@@ -1,0 +1,5 @@
+class Game
+MAX_TURNS = 12
+CODE_LENGTH = 4
+NUMBER_RANGE = (1..9)
+end
