@@ -1,7 +1,7 @@
 # Define parameters
 MAX_TURNS = 12
 CODE_LENGTH = 4
-NUMBER_RANGE = (1..9)
+NUMBER_RANGE = (0..9)
 
 # Generate secret code
 SECRET_CODE = [1, 2, 3, 4]
@@ -13,7 +13,8 @@ SECRET_CODE = [1, 2, 3, 4]
  
 def provide_feedback(guess)
   feedback = []
-    guess.each_with_index do |player_digit, index|
+  guess.each_with_index do |player_digit, index|
+    player_digit = player_digit.to_i
         if SECRET_CODE[index] == player_digit
           feedback << '*'
         elsif SECRET_CODE.include?(player_digit)
@@ -22,11 +23,18 @@ def provide_feedback(guess)
           feedback << '-'
         end
     end
-    feedback
+          feedback
+        
 end
 
-player_guess = [2, 1, 5, 4]
-feedback_result = provide_feedback(player_guess)
+# Player's turn
+def getting_player_guess
+  puts 'Welcome in the MasterMind Game! Please enter your 4 - digit guess code. :)'
+  player_guess = gets.chomp.chars
+end
 
+player_guess = getting_player_guess
+feedback_result = provide_feedback(player_guess)
 puts "Player's Guess: #{player_guess}"
 puts "Feedback: #{feedback_result}"
+puts "Solution: #{SECRET_CODE}"
