@@ -33,7 +33,7 @@ def getting_player_guess
   puts 'Welcome in the MasterMind Game! Please enter your 4 - digit guess code. :)'
   player_guess = gets.chomp.chars
 
-  until player_guess.length == CODE_LENGTH do
+  until player_guess.length == CODE_LENGTH && player_guess.all?(0..9)do
     puts 'Invalid code. Please enter 4-digit code. Thank you!'
     player_guess = gets.chomp.chars
   end
