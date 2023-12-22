@@ -29,20 +29,36 @@ end
 
 # Player's turn
 def getting_player_guess
+  puts "Welcome in the game!"
   loop do
-  puts 'Welcome in the MasterMind Game! Please enter your 4 - digit guess code. :)'
+  puts 'Please enter your 4 - digit guess code. :)'
   player_guess = gets.chomp.chars
 
-  until player_guess.length == CODE_LENGTH && player_guess.all?(0..9)do
+  until player_guess.length == CODE_LENGTH && player_guess.all? { |char| NUMBER_RANGE.cover?(char.to_i) } do
     puts 'Invalid code. Please enter 4-digit code. Thank you!'
     player_guess = gets.chomp.chars
   end
-  return player_guess
+  puts "Your guess is: #{player_guess}"
+  puts "Here is feedback based on your guess: #{provide_feedback(player_guess)}"
+  puts 'Is it your final answer? (y/n)'
+
+  confirmation = gets.chomp.downcase
+
+  return player_guess if confirmation == "y"
   end
 end
+
+def check_if_win?(player_guess)
+  player_guess = player_guess.to_i
+  if player_guess == SECRET_CODE
+    puts "Congratulations! You have broke the code!"
+  end
+end
+
 
 player_guess = getting_player_guess
 feedback_result = provide_feedback(player_guess)
 puts "Player's Guess: #{player_guess}"
 puts "Feedback: #{feedback_result}"
 puts "Solution: #{SECRET_CODE}"
+check_if_win?(player_guess)
