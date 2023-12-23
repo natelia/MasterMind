@@ -22,18 +22,20 @@ def provide_feedback(guess)
         else
           feedback << '-'
         end
-    end
-          feedback
-        
+  end
+  feedback
 end
 
-
+def hello
+  puts 'Hi! What is your name?'
+  name = gets.chomp
+  puts "Welcome in the game #{name}!"
+end
 
 # Player's turn
 def getting_player_guess
-  puts "Welcome in the game!"
-  loop do
   puts 'Please enter your 4 - digit guess code. :)'
+  loop do
   player_guess = gets.chomp.chars
 
   until player_guess.length == CODE_LENGTH && player_guess.all? { |char| NUMBER_RANGE.cover?(char.to_i) } do
@@ -50,22 +52,23 @@ end
 def game_loop
   turns_left = MAX_TURNS
 
-while turns_left > 0
-  player_guess = getting_player_guess
-  feedback_result = provide_feedback(player_guess)
+  while turns_left.positive?
+    player_guess = getting_player_guess
+    feedback_result = provide_feedback(player_guess)
 
-  if feedback_result.all?("*")
-    puts "Congrats! You have broke the code!"
-    break
+    if feedback_result.all?('*')
+      puts 'Congrats! You have broke the code!'
+      break
+    end
+
+    turns_left -= 1
   end
 
-  turns_left -= 1
-end
-
-  if turns_left == 0
+  if turns_left.zero?
     puts "I'm sorry, you ran out of turns."
-end
+    puts "Solution you were looking for was: #{SECRET_CODE}"
+  end
 end
 
+hello
 game_loop
-
