@@ -27,6 +27,8 @@ def provide_feedback(guess)
         
 end
 
+
+
 # Player's turn
 def getting_player_guess
   puts "Welcome in the game!"
@@ -40,25 +42,30 @@ def getting_player_guess
   end
   puts "Your guess is: #{player_guess}"
   puts "Here is feedback based on your guess: #{provide_feedback(player_guess)}"
-  puts 'Is it your final answer? (y/n)'
 
-  confirmation = gets.chomp.downcase
-
-  return player_guess if confirmation == "y"
+  return player_guess
   end
 end
 
-def check_if_win?(player_guess)
-  player_guess = player_guess.to_i
-  if player_guess == SECRET_CODE
-    puts "Congratulations! You have broke the code!"
+def game_loop
+  turns_left = MAX_TURNS
+
+while turns_left > 0
+  player_guess = getting_player_guess
+  feedback_result = provide_feedback(player_guess)
+
+  if feedback_result.all?("*")
+    puts "Congrats! You have broke the code!"
+    break
   end
+
+  turns_left -= 1
 end
 
+  if turns_left == 0
+    puts "I'm sorry, you ran out of turns."
+end
+end
 
-player_guess = getting_player_guess
-feedback_result = provide_feedback(player_guess)
-puts "Player's Guess: #{player_guess}"
-puts "Feedback: #{feedback_result}"
-puts "Solution: #{SECRET_CODE}"
-check_if_win?(player_guess)
+game_loop
+
