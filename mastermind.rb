@@ -14,17 +14,17 @@ SECRET_CODE = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].sample(4)
 def provide_feedback(guess)
   feedback = []
   guess.each_with_index do |player_digit, index|
-      player_digit = player_digit.to_i
+    player_digit = player_digit.to_i
     if SECRET_CODE[index] == player_digit
-  feedback << '*'
-          puts "You have chosen perfect place for #{player_digit}"
-        elsif SECRET_CODE.include?(player_digit)
-          feedback << '+'
-          puts "#{player_digit} includes in the Secret Code but it is in the wrong place!"
-        else
-          feedback << '-'
-          puts "#{player_digit } not includes in the Secret Code"
-        end
+      feedback << '*'
+      puts "You have chosen perfect place for #{player_digit}"
+    elsif SECRET_CODE.include?(player_digit)
+      feedback << '+'
+      puts "#{player_digit} includes in the Secret Code but it is in the wrong place!"
+    else
+      feedback << '-'
+      puts "#{player_digit } not includes in the Secret Code"
+    end
   end
   feedback
 end
@@ -39,16 +39,17 @@ end
 def getting_player_guess
   puts 'Please enter your 4 - digit guess code. :)'
   loop do
-  player_guess = gets.chomp.chars
-
-  until player_guess.length == CODE_LENGTH 
-    puts 'Invalid code. Please enter 4-digit code. Thank you!'
     player_guess = gets.chomp.chars
-  end
-  puts "Your guess is: #{player_guess}"
-  puts "Here is feedback based on your guess: #{provide_feedback(player_guess)}"
 
-  return player_guess
+    until player_guess.length == CODE_LENGTH
+      puts 'Invalid code. Please enter 4-digit code. Thank you!'
+      player_guess = gets.chomp.chars
+  end
+
+    puts "Your guess is: #{player_guess}"
+    puts "Here is feedback based on your guess: #{provide_feedback(player_guess)}"
+
+    return player_guess
   end
 end
 
