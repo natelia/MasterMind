@@ -1,5 +1,5 @@
 # Define parameters
-MAX_TURNS = 12
+MAX_TURNS = 6
 CODE_LENGTH = 4
 NUMBER_RANGE = (0..9)
 
@@ -44,7 +44,7 @@ def getting_player_guess
     until player_guess.length == CODE_LENGTH
       puts 'Invalid code. Please enter 4-digit code. Thank you!'
       player_guess = gets.chomp.chars
-  end
+    end
 
     puts "Your guess is: #{player_guess}"
     puts "Here is feedback based on your guess: #{provide_feedback(player_guess)}"
