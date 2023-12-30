@@ -47,7 +47,6 @@ def getting_player_guess
     end
 
     puts "Your guess is: #{player_guess}"
-    puts "Here is feedback based on your guess: #{provide_feedback(player_guess)}"
 
     return player_guess
   end
