@@ -1,5 +1,5 @@
 # Define parameters
-MAX_TURNS = 6
+MAX_TURNS = 10
 CODE_LENGTH = 4
 NUMBER_RANGE = (0..9)
 
