@@ -52,6 +52,12 @@ def getting_player_guess
   end
 end
 
+def play_again?
+  puts "Do you want to play again?"
+  answer = gets.chomp.downcase
+  answer == 'yes'
+end
+
 def game_loop
   turns_left = MAX_TURNS
 
@@ -75,3 +81,6 @@ end
 
 hello
 game_loop
+while play_again?
+  game_loop
+end
